@@ -3,8 +3,9 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 const bodyParser = require("body-parser");
-const mongoose = require("./db/mongoose");
+require("./db/mongoose");
 const testsRouter = require("./routes/testsRouter");
+const userRouter = require("./routes/userRouter");
 
 // *** Midlewares ***
 app.use(bodyParser.json()); // to get data from front
@@ -24,12 +25,12 @@ app.use(function (req, res, next) {
 });
 
 // *** ROUTES ***
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
   res.json({ message: "success" });
 });
 
-// Tests routes
 app.use("/tests", testsRouter);
+app.use("/user", userRouter);
 
 // *** Start server ***
 app.listen(PORT, () => {

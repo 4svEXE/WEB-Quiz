@@ -15,6 +15,10 @@ import { AllTestsComponent } from './views/pages/all-tests/all-tests.component';
 import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { LoginComponent } from './views/pages/login/login.component';
+import { LoginService } from './services/login.service';
+import { UserCabinetComponent } from './views/pages/user-cabinet/user-cabinet.component';
+
+
 
 @NgModule({
   declarations: [
@@ -28,6 +32,7 @@ import { LoginComponent } from './views/pages/login/login.component';
     EditTestComponent,
     RegisterComponent,
     LoginComponent,
+    UserCabinetComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,7 @@ import { LoginComponent } from './views/pages/login/login.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
