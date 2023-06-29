@@ -2,5 +2,9 @@
   "name": "WEB-Training",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev-c": "cd ./client && ng serve",
+    "dev-s": "cd ./server && yarn dev"
+  }
 }

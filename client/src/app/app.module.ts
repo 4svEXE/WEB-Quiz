@@ -13,6 +13,8 @@ import { SettingsWidgetComponent } from './views/shared/sidebar/settings-widget/
 import { CreateTestComponent } from './views/pages/create-test/create-test.component';
 import { AllTestsComponent } from './views/pages/all-tests/all-tests.component';
 import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
+import { RegisterComponent } from './views/pages/register/register.component';
+import { LoginComponent } from './views/pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
     CreateTestComponent,
     AllTestsComponent,
     EditTestComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

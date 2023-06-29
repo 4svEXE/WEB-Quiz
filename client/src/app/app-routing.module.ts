@@ -5,6 +5,8 @@ import { TestsComponent } from './views/pages/tests/tests.component';
 import { CreateTestComponent } from './views/pages/create-test/create-test.component';
 import { AllTestsComponent } from './views/pages/all-tests/all-tests.component';
 import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
+import { RegisterComponent } from './views/pages/register/register.component';
+import { LoginComponent } from './views/pages/login/login.component';
 
 
 const routes: Routes = [
@@ -13,7 +15,8 @@ const routes: Routes = [
   {path: "create-test", component: CreateTestComponent},
   {path: "all-tests", component: AllTestsComponent},
   {path: "all-tests/edit-test/:id", component: EditTestComponent},
-  
+  {path: "register", component: RegisterComponent},
+  {path: "login", component: LoginComponent},
 ];
 
 

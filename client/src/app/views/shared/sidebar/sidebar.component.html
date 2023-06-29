@@ -18,20 +18,33 @@
       </li>
       <li data-tooltip="Test settings">
         <button (click)="isActive=!isActive" [class.active]="isActive">
-          <img class="inverted" src="assets/img/sidebar/settings.svg" alt="test" />
+          <img
+            class="inverted"
+            src="assets/img/sidebar/settings.svg"
+            alt="test"
+          />
         </button>
       </li>
 
       <li data-tooltip="Add new test">
-        <button  routerLink="/create-test" [routerLinkActive]="['active']">
+        <button routerLink="/create-test" [routerLinkActive]="['active']">
           <img class="inverted" src="assets/img/sidebar/plus.svg" alt="test" />
         </button>
       </li>
 
       <li data-tooltip="shadow all test">
-        <button  routerLink="/all-tests" [routerLinkActive]="['active']">
+        <button routerLink="/all-tests" [routerLinkActive]="['active']">
           <img class="inverted" src="assets/img/sidebar/plus.svg" alt="test" />
         </button>
+      </li>
+    </ul>
+
+    <ul>
+      <li routerLink="/register">
+        <button>register</button>
+      </li>
+      <li routerLink="/login">
+        <button>login</button>
       </li>
     </ul>
 
