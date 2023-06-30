@@ -11,7 +11,7 @@ import { TestService } from "src/app/services/test.service";
   styleUrls: ["./create-test.component.scss"],
 })
 export class CreateTestComponent {
-  testModel: TestModel = fakeTest;
+  testModel: TestModel = this.newTestModel();
 
   constructor(
     private testService: TestService,
@@ -29,7 +29,6 @@ export class CreateTestComponent {
           "Succes!"
         );
 
-        console.log("responce", responce);
         this.clearInputs();
       });
   }
@@ -38,8 +37,24 @@ export class CreateTestComponent {
     this.testModel.difficulty = difficulty;
   }
 
+  newTestModel() {
+    return new TestModel(
+      "", // _id,
+      "", // title
+      1, // difficulty
+      [
+          { title: "", isCorrect: true },
+          { title: "", isCorrect: false },
+          { title: "", isCorrect: false },
+          { title: "", isCorrect: false },
+        ], // answers
+        "", // image
+      "" // explanation
+    );
+  }
+
   clearInputs() {
-    this.testModel = fakeTest
+    this.testModel = this.newTestModel()
   }
 
   // Notifications

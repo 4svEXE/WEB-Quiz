@@ -17,6 +17,7 @@ import { RegisterComponent } from './views/pages/register/register.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { LoginService } from './services/login.service';
 import { UserCabinetComponent } from './views/pages/user-cabinet/user-cabinet.component';
+import { TestResultsComponent } from './views/pages/test-results/test-results.component';
 
 
 
@@ -33,6 +34,7 @@ import { UserCabinetComponent } from './views/pages/user-cabinet/user-cabinet.co
     RegisterComponent,
     LoginComponent,
     UserCabinetComponent,
+    TestResultsComponent,
   ],
   imports: [
     BrowserModule,
