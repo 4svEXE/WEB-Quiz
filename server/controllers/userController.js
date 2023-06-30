@@ -1,14 +1,14 @@
 const { User } = require("../db/models"); //////////////////////////////////////////////////
 
-// /**
-//  * GET /user/:login
-//  * purpose: Get all tasks
-//  */
-// exports.getTest = async (req, res) => {
-//   Test.findOne({ login: req.params.login }).then((user) => {
-//     res.json(user);
-//   });
-// };
+/**
+ * GET /user/:id
+ * purpose: Get  User
+ */
+exports.getUser = async (req, res) => {
+  User.findOne({ _id: req.params.id }).then((user) => {
+    res.json(user);
+  });
+};
 
 /**
  * GET /user/all
@@ -42,6 +42,7 @@ exports.newUser = async (req, res) => {
       avatar: req.body.avatar,
       level: req.body.level,
       expirience: req.body.expirience,
+      isAdmin: req.body.isAdmin,
     });
 
     newUser.save().then((user) => {
@@ -49,6 +50,28 @@ exports.newUser = async (req, res) => {
     });
   } else {
     res.json({ message: "User not created" });
+  }
+};
+
+/**
+ * POST /user/login
+ * purpose: Login the user
+ */
+exports.loginUser = async (req, res) => {
+  if (req.body.email.length > 3 && req.body.password.length > 3) {
+    User.findOne({ email: req.body.email, password: req.body.password })
+      .then((user) => {
+        if (user) {
+          res.json({ user, message: "success", success: true });
+        } else {
+          res.json({ message: "error", success: false });
+        }
+      })
+      .catch((err) => {
+        res.json({ message: "error", error: err, success: false });
+      });
+  } else {
+    res.json({ message: "User not find", success: false });
   }
 };
 

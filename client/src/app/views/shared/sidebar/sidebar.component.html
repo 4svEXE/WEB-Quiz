@@ -3,7 +3,30 @@
   [class.active]="isActive"
 >
   <div class="h-[100vh] sidebar">
-    <div class="logo">logo</div>
+    <div class="flex flex-col w-[50px]">
+      <div class="logo" routerLink="/home">logo</div>
+
+      <ul *ngIf="!isLoggetUser">
+        <li routerLink="/register" [routerLinkActive]="['active']">
+          <button>register</button>
+        </li>
+        <li routerLink="/login" [routerLinkActive]="['active']">
+          <button>login</button>
+        </li>
+      </ul>
+
+      <ul *ngIf="isLoggetUser">
+        <li
+          routerLink="{{'/user-cabinet/'+token}}"
+          [routerLinkActive]="['active']"
+        >
+          <button>cabinet</button>
+        </li>
+        <li (click)="logout()">
+          <button>logout</button>
+        </li>
+      </ul>
+    </div>
 
     <ul class="nav">
       <li data-tooltip="Home">
@@ -26,26 +49,27 @@
         </button>
       </li>
 
-      <li data-tooltip="Add new test">
-        <button routerLink="/create-test" [routerLinkActive]="['active']">
-          <img class="inverted" src="assets/img/sidebar/plus.svg" alt="test" />
-        </button>
-      </li>
+      <div class="flex flex-col" *ngIf="isAdmin">
+        <li data-tooltip="Add new test">
+          <button routerLink="/create-test" [routerLinkActive]="['active']">
+            <img
+              class="inverted"
+              src="assets/img/sidebar/plus.svg"
+              alt="test"
+            />
+          </button>
+        </li>
 
-      <li data-tooltip="shadow all test">
-        <button routerLink="/all-tests" [routerLinkActive]="['active']">
-          <img class="inverted" src="assets/img/sidebar/plus.svg" alt="test" />
-        </button>
-      </li>
-    </ul>
-
-    <ul>
-      <li routerLink="/register">
-        <button>register</button>
-      </li>
-      <li routerLink="/login">
-        <button>login</button>
-      </li>
+        <li data-tooltip="shadow all test">
+          <button routerLink="/all-tests" [routerLinkActive]="['active']">
+            <img
+              class="inverted"
+              src="assets/img/sidebar/plus.svg"
+              alt="test"
+            />
+          </button>
+        </li>
+      </div>
     </ul>
 
     <ul class="settings">

@@ -7,6 +7,8 @@ import { AllTestsComponent } from './views/pages/all-tests/all-tests.component';
 import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { LoginComponent } from './views/pages/login/login.component';
+import { UserCabinetComponent } from './views/pages/user-cabinet/user-cabinet.component';
+
 
 
 const routes: Routes = [
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path: "all-tests/edit-test/:id", component: EditTestComponent},
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
+  {path: "user-cabinet/:id", component: UserCabinetComponent},
 ];
 
 
