@@ -1,1 +1,31 @@
-<p>test-results works!</p>
+<div class="flex flex-col justify-center items-center">
+  <div
+    class="input-block mr-10 bg-color-2-l dark:bg-color-1"
+  >
+  <h1>Test results</h1>
+  <div class="flex">
+    <h2>{{currentQuestion+1}}/{{tests.length}}</h2>
+  </div>
+    <div class="flex flex-col w-full input-block">
+      <h3>Question:</h3>
+      <p>{{tests[currentQuestion].title}}</p>
+    </div>
+
+    <div class="flex flex-col w-full input-block">
+      <h3>Your answer:</h3>
+      <p>{{tests[currentQuestion].isCorrect? 'correct': 'not correct'}}</p>
+    </div>
+
+    <div class="flex flex-col w-full input-block">
+      <h3>Question explanation:</h3>
+      <p class="">{{tests[currentQuestion].explanation}}</p>
+    </div>
+
+    <div class="flex">
+        <a (click)="prew()"><</a>
+        <a (click)="next()">></a>
+    </div>
+
+    
+  </div>
+</div>

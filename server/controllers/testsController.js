@@ -1,4 +1,4 @@
-const { Test } = require("../db/models");
+const { Test, TestResult } = require("../db/models");
 
 /**
  * GET /tests
@@ -67,10 +67,39 @@ exports.deleteTest = async (req, res) => {
 
 /**
  * GET /tests
- * purpose: Get all tasks
+ * purpose: 
  */
 exports.getTest = async (req, res) => {
   Test.findOne({ _id: req.params.id }).then((test) => {
+    res.json(test);
+  });
+};
+
+/**
+ * POST /save
+ * purpose: Craete a new test result
+ */
+exports.saveTestResults = async (req, res) => {
+  if (req.body.tests) {
+    let newTestResult = new TestResult({
+      tests: req.body.tests,
+      userId: req.body.userId,
+    });
+
+    newTestResult.save().then((newTestResult) => {
+      res.json(newTestResult);
+    });
+  } else {
+    res.json({ message: "Empty values" });
+  }
+};
+
+/**
+ * GET /tests/result/:id
+ * purpose: 
+ */
+exports.getTestResult = async (req, res) => {
+  TestResult.findOne({ _id: req.params.id }).then((test) => {
     res.json(test);
   });
 };

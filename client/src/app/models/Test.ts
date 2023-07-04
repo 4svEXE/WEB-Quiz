@@ -1,4 +1,4 @@
-type answerType = {
+export type answerType = {
   title: string;
   isCorrect: boolean;
 };
@@ -10,6 +10,7 @@ export class TestModel {
   image?: string;
   explanation: string;
   _id: string;
+  isCorrect?: boolean;
 
   constructor(
     _id: string,
@@ -17,7 +18,8 @@ export class TestModel {
     difficulty: number,
     answers: answerType[],
     image: string,
-    explanation: string
+    explanation: string,
+    isCorrect?: boolean
   ) {
     this.title = title;
     this.difficulty = difficulty;
@@ -25,5 +27,6 @@ export class TestModel {
     this.image = image;
     this.explanation = explanation;
     this._id = _id;
+    this.isCorrect = isCorrect;
   }
 }

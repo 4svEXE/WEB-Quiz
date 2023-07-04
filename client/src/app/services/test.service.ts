@@ -35,4 +35,12 @@ export class TestService {
   getTestQuestion(id: string) {
     return this.webReqService.get("tests/test/"+id);
   }
+
+  saveTestResults(tests: TestModel | object, userId?: string | null) {
+    return this.webReqService.post("tests/result/save", {tests, userId});
+  }
+
+  getTestResults(id: string) {
+    return this.webReqService.get("tests/result/" + id);
+  }
 }

@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
 import { fakeTest } from "src/app/db/fakeTest";
-import { TestModel } from "src/app/models/Test";
+import { TestModel, answerType } from "src/app/models/Test";
 import { SettingsWidgetService } from "src/app/services/settings-widget.service";
 import { TestService } from "src/app/services/test.service";
+import { Router } from "@angular/router";
 
 type questionType = {
   isActive: boolean;
@@ -25,7 +26,8 @@ export class TestsComponent {
 
   constructor(
     private testService: TestService,
-    private settingsWidgetService: SettingsWidgetService
+    private settingsWidgetService: SettingsWidgetService,
+    private router: Router
   ) {
     this.settingsWidgetService.data$.subscribe((data) => {
       this.config = data;
@@ -46,11 +48,10 @@ export class TestsComponent {
           return t.difficulty === this.config.difficulty;
         });
 
-        // Randomize the tests 
-        this.tests = this.randomizeTests(this.tests)
-        console.log('this.tests :>> ', this.tests);
+        // Randomize the tests
+        this.tests = this.randomizeTests(this.tests);
 
-        for (let i = 0; i < this.config.testSize-1; i++) {
+        for (let i = 0; i < this.config.testSize - 1; i++) {
           let testsCopy = Object.assign({}, this.question);
           this.questions.push(testsCopy);
         }
@@ -61,9 +62,7 @@ export class TestsComponent {
   }
 
   randomizeTests(array: TestModel[]): TestModel[] {
-    const randomNums: number[] = this.getRandomIndexes(
-      this.config.testSize
-    );
+    const randomNums: number[] = this.getRandomIndexes(this.config.testSize);
     let tempArray: TestModel[] = [];
 
     for (let i = 0; i < this.config.testSize; i++) {
@@ -87,16 +86,42 @@ export class TestsComponent {
     return Array.from(result);
   }
 
+  randomizeAnswers(answers: answerType[]): answerType[] {
+    const randomNums: number[] = this.getRandomIndexes(4 - 1);
+    let tempArray: answerType[] = [];
+
+    for (let i = 0; i < 4; i++) {
+      tempArray[i] = answers[randomNums[i]];
+    }
+
+    return tempArray;
+  }
+
   nextQuestion(isCorrect: boolean) {
     if (this.currentQuestion + 1 < this.tests.length) {
       this.questions[this.currentQuestion].isCorrect = isCorrect;
+      this.tests[this.currentQuestion].isCorrect = isCorrect;
+      this.questions[this.currentQuestion].isActive = false;
 
-      this.questions[this.currentQuestion++].isActive = false;
-      this.questions[this.currentQuestion].isActive = true;
+      
+
+      this.questions[++this.currentQuestion].isActive = true;
+
+      // Randomize the answers 
+      this.tests[this.currentQuestion].answers = this.randomizeAnswers(
+        this.tests[this.currentQuestion].answers
+      );
     } else {
-      console.log('questions :>> ', this.questions);
-      console.log('tests :>> ', this.tests);
-      alert("Test ends");
+
+
+      const userId = localStorage.getItem("token");
+
+      this.testService
+        .saveTestResults(this.tests, userId)
+        .subscribe((data: any) => {
+          console.log("data, ", data);
+          this.router.navigate(["/test/results/" + data["_id"]]);
+        });
     }
   }
 }

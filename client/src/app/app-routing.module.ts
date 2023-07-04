@@ -8,18 +8,22 @@ import { EditTestComponent } from './views/pages/edit-test/edit-test.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { UserCabinetComponent } from './views/pages/user-cabinet/user-cabinet.component';
+import { TestResultsComponent } from './views/pages/test-results/test-results.component';
 
 
 
 const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "tests", component: TestsComponent},
+  {path: "test/results/:id", component: TestResultsComponent},
+
   {path: "create-test", component: CreateTestComponent},
   {path: "all-tests", component: AllTestsComponent},
   {path: "all-tests/edit-test/:id", component: EditTestComponent},
   {path: "register", component: RegisterComponent},
   {path: "login", component: LoginComponent},
   {path: "user-cabinet/:id", component: UserCabinetComponent},
+
 ];
 
 
