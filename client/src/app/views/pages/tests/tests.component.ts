@@ -103,17 +103,13 @@ export class TestsComponent {
       this.tests[this.currentQuestion].isCorrect = isCorrect;
       this.questions[this.currentQuestion].isActive = false;
 
-      
-
       this.questions[++this.currentQuestion].isActive = true;
 
-      // Randomize the answers 
+      // Randomize the answers
       this.tests[this.currentQuestion].answers = this.randomizeAnswers(
         this.tests[this.currentQuestion].answers
       );
     } else {
-
-
       const userId = localStorage.getItem("token");
 
       this.testService

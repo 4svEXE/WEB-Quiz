@@ -34,12 +34,12 @@
           <img class="inverted" src="assets/img/sidebar/home.svg" alt="home" />
         </button>
       </li>
-      <li data-tooltip="Start the test">
+      <!-- <li data-tooltip="Start the test">
         <button routerLink="/tests" [routerLinkActive]="['active']">
           <img class="inverted" src="assets/img/sidebar/test.svg" alt="test" />
         </button>
-      </li>
-      <li data-tooltip="Test settings">
+      </li> -->
+      <li data-tooltip="Test settings" *ngIf="isAdmin">
         <button (click)="isActive=!isActive" [class.active]="isActive">
           <img
             class="inverted"
@@ -73,7 +73,7 @@
     </ul>
 
     <ul class="settings">
-      <li><button>ENG</button></li>
+      <!-- <li><button>ENG</button></li> -->
       <li>
         <button (click)="sendThemeState()">
           {{isDarkTheme? 'light': 'dark'}}

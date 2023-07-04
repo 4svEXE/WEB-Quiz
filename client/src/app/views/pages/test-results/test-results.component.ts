@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { WebRequestService } from "src/app/services/web-request.service";
-import { Router } from "@angular/router";
+// import { Router } from "@angular/router";
 import { TestModel } from "src/app/models/Test";
 import { fakeTest } from "src/app/db/fakeTest";
 
@@ -13,11 +13,12 @@ import { fakeTest } from "src/app/db/fakeTest";
 export class TestResultsComponent {
   tests: TestModel[] = [fakeTest];
   currentQuestion: number = 0;
+  correctAnswers: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private webReq: WebRequestService,
-    private router: Router
+    // private router: Router
   ) {}
 
   ngOnInit() {
@@ -26,6 +27,10 @@ export class TestResultsComponent {
 
       this.webReq.get("tests/result/" + params["id"]).subscribe((data: any) => {
         this.tests = data.tests;
+
+        this.correctAnswers = data.tests.filter(
+          (test: any) => test.isCorrect
+        ).length - 1;
         // console.log("tests :>> ", this.tests);
       });
     });

@@ -25,7 +25,7 @@ export class UserCabinetComponent {
       if (params["id"] === localStorage.getItem("token")) {
         this.webReq.get("user/" + params["id"]).subscribe((user) => {
           this.user = user;
-          console.log("user :>> ", user);
+          // console.log("user :>> ", user);
         });
       } else {
         this.router.navigate(["/home"]);
