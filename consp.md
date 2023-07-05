@@ -5,3 +5,7 @@ ng g component views/pages/edit-test
 ng g component views/pages/test-results
 
 ng g service services/test-results
+
+import { Router } from "@angular/router";
+private router: Router
+this.router.navigate(["/home"]);

@@ -22,5 +22,18 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    transition: 0.3s;
   }
+
+  &.hidden {
+    transform: translateX(-100%);
+  }
+}
+
+.sidebar-toggle {
+  position: absolute;
+  width: 50px;
+  left: 0px;
+  top: 0px;
+  z-index: 30;
 }

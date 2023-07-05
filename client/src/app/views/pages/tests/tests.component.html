@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="statusbar w-full flex justify-center">
+  <div class="container statusbar w-full flex justify-center">
     <div
       class="status-circle"
       *ngFor="let status of questions"
@@ -8,11 +8,11 @@
     ></div>
   </div>
   <div
-    class="content bg-color-4-l dark:bg-color-4 flex flex-col justify-center items-center"
+    class="container content bg-color-3-l dark:bg-color-4 flex flex-col justify-center items-center"
   >
     <h2 class="p-4">{{tests[currentQuestion].title}}</h2>
 
-    <div class="image-container bg-color-2-l dark:bg-color-2">
+    <div class="bg-color-2-l dark:bg-color-2">
       <!-- <div class="loader"></div> -->
       <img class="w-full pb-4" src="{{tests[currentQuestion].image}}" alt="" />
     </div>
