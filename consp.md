@@ -12,4 +12,6 @@ this.router.navigate(["/home"]);
 
 
 
-ng build --configuration production --base-href "https://github.com/4svEXE/WEB-Quiz/"
+ng build --configuration production --base-href "https://4svEXE.github.io/WEB-Quiz/"
+
+ngh command
