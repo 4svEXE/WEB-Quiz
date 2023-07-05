@@ -1,6 +1,6 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-
-const mongoURL = "mongodb://localhost:27017/WEBTESTS";
+const mongoURL = process.env.MONGO;
 
 mongoose.Promise = global.Promise;
 mongoose

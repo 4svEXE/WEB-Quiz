@@ -1,17 +1,18 @@
 const express = require("express");
 
-const app = express();
-const PORT = 3000;
-const bodyParser = require("body-parser");
 require("./db/mongoose");
+require('dotenv').config();
+const app = express();
+const bodyParser = require("body-parser");
 const testsRouter = require("./routes/testsRouter");
 const userRouter = require("./routes/userRouter");
+
 
 // *** Midlewares ***
 app.use(bodyParser.json()); // to get data from front
 
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -19,20 +20,20 @@ app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  ); //Необходимые типы запросов
-  res.header("Access-Control-Allow-Credentials", true); //Означает, что должен быть получен ответ
+  ); 
+  res.header("Access-Control-Allow-Credentials", true); 
   next();
 });
 
 // *** ROUTES ***
-app.get("/", (req, res) => {
-  res.json({ message: "success" });
-});
-
 app.use("/tests", testsRouter);
 app.use("/user", userRouter);
 
 // *** Start server ***
-app.listen(PORT, () => {
-  console.log("PORT :>> http://localhost:" + PORT);
+app.listen(process.env.PORT, (error) => {
+  if (!error) {
+    console.log("PORT :>> " + process.env.HOST + process.env.PORT);
+  } else {
+    console.log('error :>> ', error);
+  }
 });
